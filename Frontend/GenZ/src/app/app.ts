@@ -8,7 +8,7 @@ import { AnswerKey, AnswerKeyItem } from '../models/models/answer-key.model';
 import { ExamResult } from '../models/models/exam-result.model';
 @Component({
   selector: 'app-root',
-  standalone: true,
+  standalone: false,
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
