@@ -1,0 +1,97 @@
+
+<div class="register-container">
+  <div class="register-wrapper">
+    <!-- Left Section -->
+    <div class="register-left">
+      <div class="brand">
+        <span class="brand-icon">🎓</span>
+        <span>GenZ Portal</span>
+      </div>
+      <div class="welcome-content">
+        <div class="school-icon">🏫</div>
+        <h1>Join GenZ Portal</h1>
+        <p>
+          Create your account and manage your
+          school, students, exams and reports
+          from one smart platform.
+        </p>
+      </div>
+      <div class="left-footer">
+        Smart School Management System
+      </div>
+    </div>
+    <!-- Right Section -->
+    <div class="register-right">
+      <div class="register-form-box">
+        <h2>Create Account</h2>
+        <p class="subtitle">Fill in your details to get started.</p>
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" type="text" formControlName="fullName" placeholder="Enter your full name"              autocomplete="name"
+              [class.invalid]="submitted && f['fullName'].invalid">
+            <small class="error" *ngIf="submitted && f['fullName'].invalid">Please enter at least 3 characters.</small>
+          </div>
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" formControlName="email" placeholder="Enter your email" autocomplete="email"
+              [class.invalid]="submitted && f['email'].invalid">
+            <small class="error" *ngIf="submitted && f['email'].invalid"> Please enter a valid email address.</small>
+          </div>
+          <!-- Mobile -->
+          <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input id="mobile" type="tel" formControlName="mobile"placeholder="Enter 10-digit mobile number"
+              maxlength="10" autocomplete="tel" [class.invalid]="submitted && f['mobile'].invalid">
+            <small class="error" *ngIf="submitted && f['mobile'].invalid"> Please enter a valid 10-digit mobile number.</small>
+          </div>
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-box">
+              <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Create password"
+                autocomplete="new-password" [class.invalid]="submitted && f['password'].invalid">
+            <button type="button" class="toggle-password" (click)="showPassword = !showPassword"> 
+                {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
+            </div>
+            <small class="error" *ngIf="submitted && f['password'].invalid"> Password must contain at least 8 characters.</small>
+          </div>
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="password-box">
+              <input id="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword"
+                placeholder="Confirm your password" autocomplete="new-password" [class.invalid]="submitted &&
+                  (f['confirmPassword'].invalid || registerForm.hasError('passwordMismatch'))">
+              <button type="button" class="toggle-password" (click)="showConfirmPassword = !showConfirmPassword">
+                {{ showConfirmPassword ? 'Hide' : 'Show' }}
+              </button>
+            </div>
+            <small class="error" *ngIf="submitted && registerForm.hasError('passwordMismatch')">
+              Passwords do not match.
+            </small>
+            <small class="error" *ngIf="submitted && f['confirmPassword'].hasError('required')">
+              Please confirm your password.
+            </small>
+          </div>
+          <!-- Terms -->
+          <div class="terms-box">
+            <label><input type="checkbox" formControlName="acceptTerms"><span>I agree to the Terms & Conditions
+              </span></label>
+            <small class="error" *ngIf="submitted && f['acceptTerms'].invalid">
+              You must accept the terms.
+            </small>
+          </div>
+          <!-- Submit -->
+          <button type="submit" class="register-btn">Create Account → </button>
+          <!-- Login Link -->
+          <div class="login-link">Already have an account?<a routerLink="/login">Sign In</a></div>
+        </form>
+        <p class="copyright">© 2026 GenZ Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</div>
